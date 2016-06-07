@@ -8,7 +8,7 @@ var app = express();
 var secret = "mysupersecretpassword";
 
 var mongoose = require('mongoose');
-var User = require('./models/user');
+// var User = require('./models/user');
 mongoose.connect('mongodb://localhost/pups');
 
 app.use(bodyParser.json());
@@ -44,4 +44,4 @@ app.get('/*', function(req, res) {
   res.sendFile(path.join(__dirname, 'public/index.html'));
 });
 
-app.listen(3000);
+app.listen(8000);

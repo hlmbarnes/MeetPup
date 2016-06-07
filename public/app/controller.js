@@ -1,5 +1,5 @@
 angular.module('PupsCtrls', ['PupsServices'])
-.controller('HomeCtrl', ['$scope', 'pup', function($scope, pup) {
+.controller('HomeCtrl', ['$scope', 'Pup', function($scope, Pup) {
   $scope.pups = [];
 
   Pup.query(function success(data) {
@@ -16,16 +16,16 @@ angular.module('PupsCtrls', ['PupsServices'])
     });
   }
 }])
-.controller('ShowCtrl', ['$scope', '$stateParams', 'pup', function($scope, $stateParams, pup) {
+.controller('ShowCtrl', ['$scope', '$stateParams', 'Pup', function($scope, $stateParams, Pup) {
   $scope.pup = {};
 
   Pup.get({id: $stateParams.id}, function success(data) {
-    $scope.pup = data;
+    $scope.pup = data.data;
   }, function error(data) {
     console.log(data);
   });
 }])
-.controller('NewCtrl', ['$scope', '$location', 'pup', function($scope, $location, pup) {
+.controller('NewCtrl', ['$scope', '$location', 'Pup', function($scope, $location, Pup) {
   $scope.pup = {
     title: '',
     description: '',

@@ -6,6 +6,7 @@ router.route('/')
   .get(function(req, res) {
     Pup.find(function(err, pups) {
       if (err) return res.status(500).send(err);
+      console.log(pups)
       res.send(pups);
     });
   })

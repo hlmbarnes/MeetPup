@@ -1,4 +1,4 @@
-var app = angular.module('MeetPupp', ['ui.router', 'RecipeCtrls']);
+var app = angular.module('MeetPupApp', ['ui.router', 'PupsCtrls']);
 
 app.config([
   '$stateProvider',
@@ -11,17 +11,17 @@ app.config([
   $stateProvider
   .state('home', {
     url: '/',
-    templateUrl: 'app/views/recipes.html',
+    templateUrl: 'app/views/pups.html',
     controller: 'HomeCtrl'
   })
-  .state('newRecipe', {
+  .state('newPup', {
     url: '/recipes/new',
-    templateUrl: 'app/views/newRecipe.html',
+    templateUrl: 'app/views/newPup.html',
     controller: 'NewCtrl'
   })
-  .state('recipeShow', {
+  .state('pupShow', {
     url: '/recipes/:id',
-    templateUrl: 'app/views/showRecipe.html',
+    templateUrl: 'app/views/showPup.html',
     controller: 'ShowCtrl'
   })
   .state('signup', {
