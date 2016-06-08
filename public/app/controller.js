@@ -3,7 +3,7 @@ angular.module('PupsCtrls', ['PupsServices'])
   $scope.pups = [];
 
   Pup.query(function success(data) {
-    $scope.pups = data;
+    $scope.pups = data.data;
   }, function error(data) {
     console.log(data);
   });

@@ -15,12 +15,12 @@ app.config([
     controller: 'HomeCtrl'
   })
   .state('newPup', {
-    url: '/recipes/new',
+    url: '/pups/new',
     templateUrl: 'app/views/newPup.html',
     controller: 'NewCtrl'
   })
   .state('pupShow', {
-    url: '/recipes/:id',
+    url: '/pups/:id',
     templateUrl: 'app/views/showPup.html',
     controller: 'ShowCtrl'
   })

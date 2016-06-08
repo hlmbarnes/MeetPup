@@ -1,6 +1,6 @@
 angular.module('PupsServices', ['ngResource'])
 .factory('Pup', ['$resource', function($resource) {
-  return $resource('/api/pup/:id');
+  return $resource('/api/pups');
 }])
 .factory('Auth', ['$window', function($window) {
   return {
