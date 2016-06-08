@@ -24,6 +24,9 @@ app.config([
     templateUrl: 'app/views/showPup.html',
     controller: 'ShowCtrl'
   })
+  .state('pups', {
+    /////dooo thissss
+  })
   .state('signup', {
     url: '/signup',
     templateUrl: 'app/views/userSignup.html',

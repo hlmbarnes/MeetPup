@@ -73,9 +73,9 @@ angular.module('PupsCtrls', ['PupsServices'])
   };
   $scope.userSignup = function() {
     $http.post('/api/users', $scope.user).then(function success(res) {
-      $location.path('/');
+      $location.path('/pups/new');
     }, function error(res) {
-      console.log(data);
+      console.log(res);
     });
   }
 }])
@@ -86,11 +86,12 @@ angular.module('PupsCtrls', ['PupsServices'])
   };
   $scope.userLogin = function() {
     $http.post('/api/auth', $scope.user).then(function success(res) {
+      console.log(res);
       Auth.saveToken(res.data.token);
       console.log('Token:', res.data.token)
-      $location.path('/');
+      $location.path('/pups');
     }, function error(res) {
-      console.log(data);
+      console.log(res);
     });
   }
 }])
