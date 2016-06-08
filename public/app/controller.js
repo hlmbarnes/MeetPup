@@ -17,10 +17,10 @@ angular.module('PupsCtrls', ['PupsServices'])
   }
 }])
 .controller('ShowCtrl', ['$scope', '$stateParams', 'Pup', function($scope, $stateParams, Pup) {
-  $scope.pup = {};
+  $scope.pups = [];
 
-  Pup.get({id: $stateParams.id}, function success(data) {
-    $scope.pup = data.data;
+  Pup.query(function success(data) {
+    $scope.pups = data;
   }, function error(data) {
     console.log(data);
   });
