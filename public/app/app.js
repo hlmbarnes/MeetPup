@@ -19,13 +19,15 @@ app.config([
     templateUrl: 'app/views/newPup.html',
     controller: 'NewCtrl'
   })
-  .state('pupShow', {
-    url: '/pups/:id',
+  .state('pupMatch', {
+    url: '/pups/:id/matches',
     templateUrl: 'app/views/showPup.html',
-    controller: 'ShowCtrl'
+    controller: 'MatchCtrl'
   })
   .state('pups', {
-    /////dooo thissss
+    url: '/pups', 
+    templateUrl: 'app/views/pups.html',
+    controller: 'ShowCtrl'
   })
   .state('signup', {
     url: '/signup',
@@ -37,10 +39,16 @@ app.config([
     templateUrl: 'app/views/userLogin.html',
     controller: 'LoginCtrl'
   })
+   .state('myPup', {
+    url: '/myPup',
+    teplateUrl: 'app/views/myPup.html',
+    controller: 'MyPupCtrl'
+  })
   .state('404', {
     url: '/404',
     templateUrl: 'app/views/404.html'
   });
+
 
   $locationProvider.html5Mode(true);
 }])

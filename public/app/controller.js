@@ -34,9 +34,10 @@ angular.module('PupsCtrls', ['PupsServices'])
 
   $scope.createPup = function() {
     Pup.save($scope.pup, function success(data) {
-      $location.path('/');
+      $location.path('/pups');
     }, function error(data) {
       console.log(data);
+
     });
   }
 }])
@@ -48,24 +49,27 @@ angular.module('PupsCtrls', ['PupsServices'])
   }
 }])
 
-.controller('SignupCtrl', ['$scope', function($scope) {
-  $scope.user = {
-    email: '',
-    password: ''
-  };
-  $scope.userSignup = function() {
-    //to implement
-  }
-}])
-.controller('LoginCtrl', ['$scope', function($scope) {
-  $scope.user = {
-    email: '',
-    password: ''
-  };
-  $scope.userLogin = function() {
-    //to implement
-  }
-}])
+// .controller('SignupCtrl', ['$scope', function($scope) {
+//   $scope.user = {
+//     email: '',
+//     password: ''
+//   };
+//   $scope.userSignup = function() {
+//     //to implement
+//   }
+// }])
+// .controller('LoginCtrl', ['$scope', function($scope) {
+//   $scope.user = {
+//     email: '',
+//     password: ''
+//   };
+//   $scope.userLogin = function() {
+//     $http.post('api/pups');
+//     // this is
+
+
+//   }
+// }])
 .controller('SignupCtrl', ['$scope', '$http', '$location', function($scope, $http, $location) {
   $scope.user = {
     email: '',
@@ -95,4 +99,24 @@ angular.module('PupsCtrls', ['PupsServices'])
     });
   }
 }])
+
+.controller('MyPupCtrl', ['$scope', '$http', '$location', 'Auth', 'Pup', 
+  function($scope, $http, $location, Auth, Pup){
+    // $scope.pup = {};
+
+  Pup.get({id: $stateParams.id}, function success(data) {
+    $scope.pup = data;
+  }, function error(data) {
+    console.log(data);
+  });
+}]) 
+
+// .controller('MatchCtrl', ['$scope', '$http', 'Auth', function($scope, $http, auth){
+//   $scope.user = {};
+//   $scope.match = function(){
+
+//   }
+// }])
+
+
 
