@@ -132,15 +132,17 @@ angular.module('PupsCtrls', ['PupsServices'])
     };
   }])
 
-
+// match controller to pass the matches into the pup match array 
 .controller('MatchCtrl', ['$scope', '$http', 'Auth', '$stateParams',
  function($scope, $http, Auth, $stateParams){
   $scope.user = {};
   $scope.match = function(){
   Pup.get({id: $stateParams.user.pup.id}, function success(data) {
     $scope.pup = data;
-  }
-}])
+    console.log(data);
+  });
+  }}])
+
 
 
 
