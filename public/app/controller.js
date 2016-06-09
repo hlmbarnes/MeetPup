@@ -116,20 +116,29 @@ angular.module('PupsCtrls', ['PupsServices'])
 .controller('MyPupCtrl', ['$scope', '$http', '$stateParams', '$location', 'Auth', 'Pup', 
   function($scope, $http, $stateParams, $location, Auth, Pup){
     $scope.pup = {};
-    console.log($stateParams.user.pup.id);
-  Pup.get({id: $stateParams.user.pup.id}, function success(data) {
-    $scope.pup = data;
-  }, function error(data) {
-    console.log(data);
+    //console.log($stateParams.user.pup.id);
+
+    $http.get('/api/users/pup').then(function success(res){
+      $scope.pup = res.data;
+      console.log("mypup", res);
+    }, function error(res){
+      console.log(res);
     });
 
-   $scope.deletePup = function(id, pupsIdx) {
-    Pup.delete({id: id}, function success(data) {
-      $scope.pups.splice(pupsIdx, 1);
-    }, function error(data) {
-      console.log(data);
-    });
-    };
+  // Pup.get({id: $stateParams.user.pup.id}, function success(res) {
+  //   $scope.pup = res.data;
+  //   console.log("mypup", res);
+  // }, function error(data) {
+  //   console.log(data);
+  //   });
+
+     $scope.deletePup = function(id, pupsIdx) {
+      Pup.delete({id: id}, function success(data) {
+        $scope.pups.splice(pupsIdx, 1);
+      }, function error(data) {
+        console.log(data);
+      });
+      };
   }])
 
 // match controller to pass the matches into the pup match array 

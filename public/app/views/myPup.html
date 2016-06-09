@@ -1,11 +1,9 @@
 <h1>{{pup.name}}</h1>
 
 <div class="well">
-  <p>
-  <h3>{{mypup.name}}</h3>
-  <h4>{mypup.bio}}</h4>
-
-  <img class="img-responsive" ng-src="{{mypup.image}}">
+  <h3>{{pup.name}}</h3>
+  <p>{{pup.bio}}</p>
+  <img class="img-responsive" ng-src="{{pup.image}}">
   <a ng-click="editPup(pup.id)" class="btn btn-small btn-primary">Edit</a>
   <a ng-click="deletePup(pup.id)" class="btn btn-small btn-danger">Delete</a>
 </div>

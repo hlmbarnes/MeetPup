@@ -42,7 +42,7 @@ app.config([
   })
    .state('mypup', {
     url: '/myPup',
-    teplateUrl: 'app/views/myPup.html',
+    templateUrl: 'app/views/myPup.html',
     controller: 'MyPupCtrl'
   })
   .state('404', {
