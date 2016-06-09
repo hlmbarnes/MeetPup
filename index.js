@@ -10,7 +10,8 @@ var secret = "mysupersecretpassword";
 
 var mongoose = require('mongoose');
 var User = require('./models/user');
-mongoose.connect('mongodb://localhost/pups');
+// mongoose.connect('mongodb://localhost/pups');
+mongoose.connect("mongodb://"+process.env.MONGO_USER+":"+process.env.MONGO_PASS+"@ds011314.mlab.com:11314/meetpup")
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
@@ -35,7 +36,7 @@ app.post('/api/auth', function(req, res) {
     console.log(user)
     if (err || !user) return res.status(401).send({message: 'User not found'});
     user.authenticated(req.body.password, function(err, result) {
- 
+
       if (err || !result) return res.status(401).send({message: 'User not authenticated'});
 
       var token = jwt.sign(user, secret);
