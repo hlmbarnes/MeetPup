@@ -14,8 +14,8 @@
     <ul class="nav navbar-nav navbar-right">
       <li><a href="/signup" ng-hide="Auth.isLoggedIn()">SignPup</a></li>
       <li><a href="/login" ng-hide="Auth.isLoggedIn()">Dogin</a></li>
-      <li><a href="/matches" ng-show="Auth.isLoggedIn">My Matches</a><li>
-      <li><a href="/myPup" ng-show="Auth.isLoggedIn()">My Pup </a></li>
+      <li><a href="/matches" ng-hide="Auth.isLoggedOut()" ng-show="Auth.isLoggedIn">My Matches</a><li>
+      <li><a href="/mypup" ng-hide="Auth.isLoggedOut()" ng-show="Auth.isLoggedIn()">My Pup </a></li>
       <li><a href="#" ng-click="logout()" ng-show="Auth.isLoggedIn()">Logout</a></li>
     </ul>
   </div>

@@ -39,7 +39,7 @@ app.config([
     templateUrl: 'app/views/userLogin.html',
     controller: 'LoginCtrl'
   })
-   .state('myPup', {
+   .state('mypup', {
     url: '/myPup',
     teplateUrl: 'app/views/myPup.html',
     controller: 'MyPupCtrl'

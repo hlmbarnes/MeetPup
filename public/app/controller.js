@@ -34,6 +34,7 @@ angular.module('PupsCtrls', ['PupsServices'])
   $scope.hidePup = function(index) { 
   var pupNo = $scope.pups.splice(index, 1);  
   var hidden = pupNo.toString();
+
   $scope.pups.pop();
   }
 
@@ -44,7 +45,7 @@ angular.module('PupsCtrls', ['PupsServices'])
   $http.post('/api/pups/match', $scope.pup).then(function success(res) {
     }, function error(res) {
       console.log(res);
-      console.log(match);
+
     });
   // saves puppy info to user auth token
     $http.post('/api/users', $scope.user).then(function success(res) {
@@ -59,8 +60,8 @@ angular.module('PupsCtrls', ['PupsServices'])
 
 .controller('NewCtrl', ['$scope', '$location', 'Pup', 'Auth', function($scope, $location, Pup, Auth) {
   $scope.pup = {
-    title: '',
-    description: '',
+    name: '',
+    bio: '',
     image: ''
   };
   $scope.createPup = function() {
@@ -116,8 +117,8 @@ angular.module('PupsCtrls', ['PupsServices'])
 .controller('MyPupCtrl', ['$scope', '$http', '$location', 'Auth', 'Pup', 
   function($scope, $http, $location, Auth, Pup){
     $scope.pup = {};
-
-  Pup.get({id: $stateParams.id}, function success(data) {
+    console.log($stateParams.user.pup.id);
+  Pup.get({id: $stateParams.user.pup.id}, function success(data) {
     $scope.pup = data;
   }, function error(data) {
     console.log(data);
