@@ -119,8 +119,8 @@ angular.module('PupsCtrls', ['PupsServices'])
   }
 }])
 
-.controller('MyPupCtrl', ['$scope', '$http', '$location', 'Auth', 'Pup', 
-  function($scope, $http, $location, Auth, Pup){
+.controller('MyPupCtrl', ['$scope', '$http', '$stateParams', '$location', 'Auth', 'Pup', 
+  function($scope, $http, $stateParams, $location, Auth, Pup){
     $scope.pup = {};
     console.log($stateParams.user.pup.id);
   Pup.get({id: $stateParams.user.pup.id}, function success(data) {

@@ -19,7 +19,8 @@ app.config([
     templateUrl: 'app/views/newPup.html',
     controller: 'NewCtrl'
   })
-  .state('pupMatch', {
+  // before state was pupMatch
+  .state('match', {
     url: '/pups/:id/matches',
     templateUrl: 'app/views/showPup.html',
     controller: 'MatchCtrl'
