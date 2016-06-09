@@ -47,15 +47,23 @@ router.route('/:id')
 
 // logic below for the router for matching, first find user_id  then creating a match
 router.route('/match') 
-  .put(function(req, res){
-    // Pup.findByIdAndUpdate
-    Pup.findByIdAndUpdate(req.params.id, function(err, pup){
-      if(err) return res.status(500).send(err);
-      res.send({})
+  .post(function(req, res){
+    User.findById(req.body.currentUserId, function(err, user) {
+      if(user) {
+        console.log('Incoming Pup: ', req.body.pup);
+        Pup.update({_id: user.pup}, {$push: {match: req.body.pup}}, function(err, pup) {
+          console.log('Error: ', err);
+          console.log('New pup added: ', pup);
+        });
+      }
+    })
+    // Pup.findByIdAndUpdate(req.params.id, function(err, pup){
+    //   if(err) return res.status(500).send(err);
+    //   res.send({})
 
-    // User.findOne({_id:req.user._doc._id}, function(err, user)
-    // Match.create(req.body, function(err, pup)  
-    });
+    // // User.findOne({_id:req.user._doc._id}, function(err, user)
+    // // Match.create(req.body, function(err, pup)  
+    // });
   });
 
 module.exports = router;

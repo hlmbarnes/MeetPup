@@ -19,7 +19,7 @@ angular.module('PupsCtrls', ['PupsServices'])
 }])
 
 // controller to show all pups to be matched
-.controller('ShowCtrl', ['$scope', '$stateParams', 'Pup', function($scope, $stateParams, Pup) {
+.controller('ShowCtrl', ['$scope', '$stateParams', 'Pup', '$http', 'Auth', function($scope, $stateParams, Pup, $http, Auth) {
   $scope.pups = [];
   $scope.matches = [];
 
@@ -33,35 +33,29 @@ angular.module('PupsCtrls', ['PupsServices'])
 // send http request to left or right and  left adds to the left, right will add to right. 
 
   $scope.hidePup = function(index) { 
-  var pupNo = $scope.pups.splice(index, 1);  
-  var hidden = pupNo.toString();
-  console.log(pupNo)
-  $scope.pups.pop();
-  console.log($scope.pups);
-  $scope.pups.push();
+    var pupNo = $scope.pups.splice(index, 1);  
+    var hidden = pupNo.toString();
+    console.log(pupNo)
+    $scope.pups.pop();
+    console.log($scope.pups);
+    $scope.pups.push();
   }
 
-  $scope.matchPup = function(index) { 
-  var pupYes = $scope.pups.splice(index, 1);  
-  var match = pupYes.toString();
-  console.log(match.id);
-  // $scope.pups.push(matches);
-  $scope.pups.$save = new
-  $http.post('/api/pups/match', $scope.pup).then(function success(res) {
-    }, function error(res) {
-      console.log(res);
-
-    });
-  // saves puppy info to user auth token
-    $http.post('/api/users', $scope.user).then(function success(res) {
-      Auth.saveToken(res.data.token)
-      $location.path('/pups/new');
-    }, function error(res) {
-      console.log(res);
+  $scope.matchPup = function(pup) {
+    $http.post(
+      '/api/pups/match',
+      {pup: pup, currentUserId: Auth.currentUser()._doc._id}
+    )
+    .then(
+      function success(res) {
+        console.log(res);
+      },
+      function error(res) {
+        console.log(res);
 
       });
-    };
-  }])
+  }
+}])
 
 .controller('NewCtrl', ['$scope', '$location', 'Pup', 'Auth', function($scope, $location, Pup, Auth) {
   $scope.pup = {
@@ -139,12 +133,14 @@ angular.module('PupsCtrls', ['PupsServices'])
   }])
 
 
-// .controller('MatchCtrl', ['$scope', '$http', 'Auth', function($scope, $http, auth){
-//   $scope.user = {};
-//   $scope.match = function(){
-
-//   }
-// }])
+.controller('MatchCtrl', ['$scope', '$http', 'Auth', '$stateParams',
+ function($scope, $http, Auth, $stateParams){
+  $scope.user = {};
+  $scope.match = function(){
+  Pup.get({id: $stateParams.user.pup.id}, function success(data) {
+    $scope.pup = data;
+  }
+}])
 
 
 
