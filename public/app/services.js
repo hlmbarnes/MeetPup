@@ -39,5 +39,5 @@ angular.module('PupsServices', ['ngResource'])
       }
       return config;
     }
-  }
+  } 
 }])

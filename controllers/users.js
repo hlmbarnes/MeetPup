@@ -1,6 +1,10 @@
 var express = require('express');
 var User = require('../models/user');
 var router = express.Router();
+var expressJWT = require('express-jwt');
+var jwt = require('jsonwebtoken');
+var secret = "mysupersecretpassword";
+
 
 router.route('/')
   .get(function(req, res) {
@@ -16,7 +20,9 @@ router.route('/')
       User.create(req.body, function(err, user) {
         console.log(user)
         if (err) return res.status(500).send(err);
-        res.send(user);
+
+        var token = jwt.sign(user, secret);
+        res.send({user: user, token: token});
       });
     })
   });

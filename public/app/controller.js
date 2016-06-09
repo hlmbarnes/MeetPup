@@ -14,7 +14,7 @@ angular.module('PupsCtrls', ['PupsServices'])
     }, function error(data) {
       console.log(data);
     });
-  }
+  };
 }])
 
 // controller to show all pups to be matched
@@ -28,26 +28,41 @@ angular.module('PupsCtrls', ['PupsServices'])
     console.log(data);
   });
 
+// make http request upon ng-click (hide or play) that will hide the puppies  you click left and
+// send http request to left or right and  left adds to the left, right will add to right. 
+
   $scope.hidePup = function(index) { 
   var pupNo = $scope.pups.splice(index, 1);  
   var hidden = pupNo.toString();
-  // $scope.pups.pop();
-}
+  $scope.pups.pop();
+  }
 
   $scope.matchPup = function(index) { 
-  
   var pupYes = $scope.pups.splice(index, 1);  
   var match = pupYes.toString();
   $scope.pups.push(matches);
-}
-}])
-.controller('NewCtrl', ['$scope', '$location', 'Pup', function($scope, $location, Pup) {
+  $http.post('/api/pups/match', $scope.pup).then(function success(res) {
+    }, function error(res) {
+      console.log(res);
+      console.log(match);
+    });
+  // saves puppy info to user auth token
+    $http.post('/api/users', $scope.user).then(function success(res) {
+      Auth.saveToken(res.data.token)
+      $location.path('/pups/new');
+    }, function error(res) {
+      console.log(res);
+
+      });
+    };
+  }])
+
+.controller('NewCtrl', ['$scope', '$location', 'Pup', 'Auth', function($scope, $location, Pup, Auth) {
   $scope.pup = {
     title: '',
     description: '',
     image: ''
   };
-
   $scope.createPup = function() {
     Pup.save($scope.pup, function success(data) {
       $location.path('/pups');
@@ -55,29 +70,32 @@ angular.module('PupsCtrls', ['PupsServices'])
       console.log(data);
 
     });
-  }
+  };
 }])
+
 .controller('NavCtrl', ['$scope', 'Auth', function($scope, Auth) {
   $scope.Auth = Auth;
   $scope.logout = function() {
     Auth.removeToken();
     console.log('My token:', Auth.getToken());
-  }
+  };
 }])
 
-.controller('SignupCtrl', ['$scope', '$http', '$location', function($scope, $http, $location) {
+.controller('SignupCtrl', ['$scope', '$http', '$location', 'Auth', function($scope, $http, $location,Auth) {
   $scope.user = {
     email: '',
     password: ''
   };
   $scope.userSignup = function() {
     $http.post('/api/users', $scope.user).then(function success(res) {
+      Auth.saveToken(res.data.token)
       $location.path('/pups/new');
     }, function error(res) {
       console.log(res);
     });
   }
 }])
+
 .controller('LoginCtrl', ['$scope', '$http', '$location', 'Auth', function($scope, $http, $location, Auth) {
   $scope.user = {
     email: '',
@@ -103,8 +121,8 @@ angular.module('PupsCtrls', ['PupsServices'])
     $scope.pup = data;
   }, function error(data) {
     console.log(data);
-  });
-}]) 
+    });
+  }])
 
 
 // .controller('MatchCtrl', ['$scope', '$http', 'Auth', function($scope, $http, auth){
