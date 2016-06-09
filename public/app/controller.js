@@ -34,14 +34,18 @@ angular.module('PupsCtrls', ['PupsServices'])
   $scope.hidePup = function(index) { 
   var pupNo = $scope.pups.splice(index, 1);  
   var hidden = pupNo.toString();
-
+  console.log(pupNo)
   $scope.pups.pop();
+  console.log($scope.pups);
+  $scope.pups.push();
   }
 
   $scope.matchPup = function(index) { 
   var pupYes = $scope.pups.splice(index, 1);  
   var match = pupYes.toString();
-  $scope.pups.push(matches);
+  console.log(match.id);
+  // $scope.pups.push(matches);
+  $scope.pups.$save = new
   $http.post('/api/pups/match', $scope.pup).then(function success(res) {
     }, function error(res) {
       console.log(res);

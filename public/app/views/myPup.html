@@ -5,6 +5,8 @@
     {{pup.bio}}
   </p>
   <img class="img-responsive" ng-src="{{pup.image}}">
+  <a ng-click="editPup(pup.id)" class="btn btn-small btn-primary">Edit</a>
+  <a ng-click="deletePup(pup.id)" class="btn btn-small btn-danger">Delete</a>
 </div>
 
 <p> My Matches!</p>
