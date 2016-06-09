@@ -133,6 +133,7 @@ angular.module('PupsCtrls', ['PupsServices'])
   //   });
 
      $scope.deletePup = function(id, pupsIdx) {
+      // console.log('pupsIdx:', pupsIdx);
       Pup.delete({id: id}, function success(data) {
         $scope.pups.splice(pupsIdx, 1);
       }, function error(data) {
