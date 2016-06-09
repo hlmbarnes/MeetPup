@@ -1,6 +1,7 @@
 angular.module('PupsCtrls', ['PupsServices'])
 .controller('HomeCtrl', ['$scope', 'Pup', function($scope, Pup) {
   $scope.pups = [];
+  $scope.matches = [];
 
   Pup.query(function success(data) {
     $scope.pups = data.data;
@@ -127,6 +128,14 @@ angular.module('PupsCtrls', ['PupsServices'])
   }, function error(data) {
     console.log(data);
     });
+
+   $scope.deletePup = function(id, pupsIdx) {
+    Pup.delete({id: id}, function success(data) {
+      $scope.pups.splice(pupsIdx, 1);
+    }, function error(data) {
+      console.log(data);
+    });
+    };
   }])
 
 
