@@ -21,7 +21,7 @@ app.config([
   })
   // before state was pupMatch
   .state('match', {
-    url: '/pups/:id/match',
+    url: '/match',
     templateUrl: 'app/views/matches.html',
     controller: 'MatchCtrl'
   })

@@ -10,7 +10,7 @@ var PupSchema = new mongoose.Schema({
   image: String,
   left: [{type: mongoose.Schema.Types.ObjectId,  ref:'Pup'}],
   right: [{type: mongoose.Schema.Types.ObjectId, ref:'Pup'}],
-  match: []
+  match: [{type: mongoose.Schema.Types.ObjectId, ref:'Pup'}]
 });
 
 module.exports = mongoose.model('Pup', PupSchema);

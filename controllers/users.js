@@ -1,5 +1,6 @@
 var express = require('express');
 var User = require('../models/user');
+var Pup = require('../models/pup');
 var router = express.Router();
 var expressJWT = require('express-jwt');
 var jwt = require('jsonwebtoken');
@@ -26,6 +27,14 @@ router.route('/')
       });
     })
   });
+
+router.route('/pup')
+  .get(function(req, res){
+    User.findOne({_id: req.user._doc._id}).populate({path:'pup', populate:{path: 'match'}}).exec(function(err, user){
+      console.log(user)
+      res.json(user.pup);
+    })
+  })
 
 router.get('/:id', function(req, res) {
   User.findById(req.params.id, function(err, user) {
