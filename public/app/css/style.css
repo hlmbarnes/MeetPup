@@ -1,25 +1,24 @@
-body{
+
+html, body, {
+  background-color: #E6DDDE;
+  height: 100%;
+  font-family: 'Open Sans Condensed';
+}
+
+#well{
+  background-color: #E6DDDE;
+}
+/*body{
   font-family: 'Playfair Display', serif;
   background-color: blue;
-}
+}*/
 
-legend {
-  /*display: inline;
-  width: auto;
-  padding: 0;
-  margin: 0;
-  font-size: medium;
-  line-height: normal;*/
 
-  color: purple;
-  border: 0;
-  border-bottom: none;
-}
 
-#navbar-header{
+#navbar{
   background-color: grey;
 }
 
 btn btn-primary{
-  
+
 }
