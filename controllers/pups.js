@@ -25,6 +25,21 @@ router.route('/')
     
   });
 
+
+router.get('/unmatched', function(req, res){
+  User.findById(req.query.id).populate('pup').exec(function(err, user){
+    var exclude = [user.pup._id];
+    console.log(exclude);
+    console.log(user.pup.match);
+    exclude = exclude.concat(user.pup.left, user.pup.match);
+    console.log(exclude);
+    Pup.find({_id: {$nin: exclude}}).populate('match').exec(function(err, pups){
+      res.send(pups);
+    })
+  })
+  
+})
+
 router.route('/:id')
   .get(function(req, res) {
     Pup.findById(req.params.id, function(err, pup) {
@@ -65,5 +80,6 @@ router.route('/match')
     // // Match.create(req.body, function(err, pup)  
     // });
   });
+
 
 module.exports = router;

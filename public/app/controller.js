@@ -31,15 +31,29 @@ angular.module('PupsCtrls', ['PupsServices'])
     console.log("success", data)
   }, function error(data) {
     console.log('error');
-  });$scope
-// store with scope.user.pup and use filter,if it isnt the same
-
-  Pup.query(function success(data) {
-    $scope.pups = data;
-    console.log($scope.pups);
-  }, function error(data) {
-    console.log(data);
   });
+
+  // $scope.save(user.pup), function success(data){
+
+  // }
+
+  // $scope.save($scope.pup.match, function success(match){
+    //   //   console.log(match);
+// store with scope.user.pup and use filter,if it isnt the same
+// This is where I was previously getting the pups
+  // Pup.query(function success(data) {
+  //   $scope.pups = data;
+  //   console.log($scope.pups);
+  // }, function error(data) {
+  //   console.log(data);
+  // });
+
+  $http({url:'/api/pups/unmatched', params:{id: currentUser._doc._id}})
+  .then(function success(res){
+      $scope.pups = res.data;
+    }, function error(res){
+      console.log(data);
+    })
 
 // make http request upon ng-click (hide or play) that will hide the puppies  you click left and
 // send http request to left or right and  left adds to the left, right will add to right. 
