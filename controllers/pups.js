@@ -19,10 +19,8 @@ router.route('/')
         user.pup = pup;
         user.save();
         res.send(pup);
-    
       }); 
     })
-    
   });
 
 

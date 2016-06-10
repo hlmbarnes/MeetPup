@@ -57,6 +57,8 @@ angular.module('PupsCtrls', ['PupsServices'])
 
 // make http request upon ng-click (hide or play) that will hide the puppies  you click left and
 // send http request to left or right and  left adds to the left, right will add to right. 
+// http request (route in node), router.post("/hide")....
+// can use  .get('/unmatched') and .post('match') for reference
   $scope.hidePup = function(index) { 
     var pupNo = $scope.pups.splice(index, 1);  
     var hidden = pupNo.toString();
