@@ -19,7 +19,7 @@ router.route('/')
       if(err) return res.status(500).send(err);
       if(exists) return res.status(401).send("user exists")
       User.create(req.body, function(err, user) {
-        console.log(user)
+        // console.log(user)
         if (err) return res.status(500).send(err);
 
         var token = jwt.sign(user, secret);
@@ -31,7 +31,7 @@ router.route('/')
 router.route('/pup')
   .get(function(req, res){
     User.findOne({_id: req.user._doc._id}).populate({path:'pup', populate:{path: 'match'}}).exec(function(err, user){
-      console.log(user)
+      // console.log(user)
       res.json(user.pup);
     })
   })
@@ -39,7 +39,7 @@ router.route('/pup')
 router.get('/:id', function(req, res) {
   User.findById(req.params.id, function(err, user) {
     if (err) return res.status(500).send(err);
-    res.send(user);
+    res.send({user: user, pup: user.pup});
   });
 });
 

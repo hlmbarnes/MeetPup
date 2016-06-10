@@ -16,22 +16,33 @@ angular.module('PupsCtrls', ['PupsServices'])
       console.log(data);
     });
   };
+
 }])
 
 // controller to show all pups to be matched
 .controller('ShowCtrl', ['$scope', '$stateParams', 'Pup', '$http', 'Auth', function($scope, $stateParams, Pup, $http, Auth) {
   $scope.pups = [];
   $scope.matches = [];
+  var currentUser = Auth.currentUser();
+   $http({
+    method: 'GET',
+    url: '/api/users/' + currentUser._doc._id,
+  }).then(function success(data) {
+    console.log("success", data)
+  }, function error(data) {
+    console.log('error');
+  });$scope
+// store with scope.user.pup and use filter,if it isnt the same
 
   Pup.query(function success(data) {
     $scope.pups = data;
+    console.log($scope.pups);
   }, function error(data) {
     console.log(data);
   });
 
 // make http request upon ng-click (hide or play) that will hide the puppies  you click left and
 // send http request to left or right and  left adds to the left, right will add to right. 
-
   $scope.hidePup = function(index) { 
     var pupNo = $scope.pups.splice(index, 1);  
     var hidden = pupNo.toString();
@@ -40,7 +51,6 @@ angular.module('PupsCtrls', ['PupsServices'])
     console.log($scope.pups);
     $scope.pups.push();
   }
-
   $scope.matchPup = function(pup) {
     $http.post(
       '/api/pups/match',
@@ -52,7 +62,6 @@ angular.module('PupsCtrls', ['PupsServices'])
       },
       function error(res) {
         console.log(res);
-
       });
   }
 }])
@@ -68,7 +77,6 @@ angular.module('PupsCtrls', ['PupsServices'])
       $location.path('/pups');
     }, function error(data) {
       console.log(data);
-
     });
   };
 }])
@@ -117,7 +125,6 @@ angular.module('PupsCtrls', ['PupsServices'])
   function($scope, $http, $stateParams, $location, Auth, Pup){
     $scope.pup = {};
     //console.log($stateParams.user.pup.id);
-
     $http.get('/api/users/pup').then(function success(res){
       $scope.pup = res.data;
       console.log("mypup", res);
@@ -131,7 +138,6 @@ angular.module('PupsCtrls', ['PupsServices'])
   // }, function error(data) {
   //   console.log(data);
   //   });
-
      $scope.deletePup = function(id, pupsIdx) {
       // console.log('pupsIdx:', pupsIdx);
       Pup.delete({id: id}, function success(data) {
