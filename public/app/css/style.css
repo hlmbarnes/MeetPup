@@ -1,24 +1,31 @@
 
-html, body, {
-  background-color: #E6DDDE;
+html, body {
+  background-color: #496386;
   height: 100%;
-  font-family: 'Open Sans Condensed';
-}
-
-#well{
-  background-color: #E6DDDE;
-}
-/*body{
   font-family: 'Playfair Display', serif;
-  background-color: blue;
-}*/
-
-
-
-#navbar{
-  background-color: grey;
 }
 
-btn btn-primary{
+.well{
+  background-color: #F8E9D6;
+  border-radius: 20px;
+}
 
+.well.buttons{
+  align-items: center;
+}
+.navbar{
+  background-color: #F8E9D6;
+  color: black;
+}
+
+.btn-primary{
+  background-color: #496386;
+  line-height: 40px;
+  font-size: 15px;
+  align-items: center;
+  color: #F8E9D6;
+}
+.img-responsive{
+  border-radius: 20px;
+  padding: 10px;
 }
