@@ -8,6 +8,7 @@ html, body {
 .well{
   background-color: #F8E9D6;
   border-radius: 20px;
+  margin: 15px;
 }
 
 .well.buttons{

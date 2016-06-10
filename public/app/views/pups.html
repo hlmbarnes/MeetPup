@@ -1,10 +1,10 @@
-<div class="well" ng-repeat="pup in pups">
+<div class="well row" ng-repeat="pup in pups">
   <h3>{{pup.name}}</h3>
   <p>
     {{pup.bio}}</p>
   <img class="img-responsive" ng-src="{{pup.image}}">
 <!--   <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTic1T6DwvKV5lKNEekhSUGaUgsNIhGKcm8xRXl27ITe_nK6pLLCVZ3crCp"> -->
-  <div class="buttons">
+  <div class="buttons .col-md-4 .col-md-offset-4">
   <a href="#" ng-click="hidePup()" class="btn btn-primary">&larr; Next Pup 🐶 </a>
   <a href="#" ng-click="matchPup(pup)" class="btn btn-primary"> Let's Play! 👯 &rarr;</a>
   </div>

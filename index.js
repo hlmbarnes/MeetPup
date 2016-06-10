@@ -10,8 +10,8 @@ var secret = "mysupersecretpassword";
 
 var mongoose = require('mongoose');
 var User = require('./models/user');
-// mongoose.connect('mongodb://localhost/pups');
-mongoose.connect("mongodb://"+process.env.MONGO_USER+":"+process.env.MONGO_PASS+"@ds011314.mlab.com:11314/meetpup")
+mongoose.connect('mongodb://localhost/pups');
+// mongoose.connect("mongodb://"+process.env.MONGO_USER+":"+process.env.MONGO_PASS+"@ds011314.mlab.com:11314/meetpup")
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
@@ -49,5 +49,5 @@ app.get('/*', function(req, res) {
   res.sendFile(path.join(__dirname, 'public/index.html'));
 });
 
- // app.listen(8000);
- app.listen(process.env.PORT || 3000)
+app.listen(8000);
+// app.listen(process.env.PORT || 3000)
