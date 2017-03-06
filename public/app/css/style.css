@@ -24,6 +24,12 @@ html, body {
   margin: 15px;
 }
 
+.container{
+  background-color: #F8E9D6;
+  border-radius: 20px;
+  margin: 15px;
+}
+
 .well.buttons{
   align-items: center;
 }
